@@ -45,7 +45,13 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { setIsLoggedIn, setUser, user } = useGlobalContext();
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  
+  const [educationList, setEducationList] = useState([
+    { label: "Post Doctoral Fellowship", value: "Post Doctoral Fellowship" },
+    { label: "PHD", value: "PHD" },
+    { label: "Masters Degree", value: "Masters Degree" },
+    { label: "Bachelors Degree", value: "Bachelors Degree" },
+    { label: "Secondary School", value: "Secondary School" },
+  ]);
   const today = new Date();
   const minDate = new Date(
     today.getFullYear() - 18,
@@ -214,8 +220,8 @@ const Login = () => {
         const newDataJSON = JSON.stringify(result.user);
 
         await SecureStore.setItemAsync("user", newDataJSON);
-        setIsLoggedIn(true);
         setUser(result.user);
+        setIsLoggedIn(true);
         router.replace("/home");
       } else {
         console.log(result.error);
@@ -420,6 +426,21 @@ const Login = () => {
             </View>
             {form.student == "yes" && (
               <>
+                <View className="border border-black-200 flex-1 h-16 bg-dark-50 rounded-lg focus:border-slate-600 p-3 py-6 ">
+                    <Dropdown
+                      labelField="label"
+                      valueField="value"
+                      dropdownPosition="top"
+                      placeholderStyle={{ color: "#C7C7CD" }}
+                      selectedTextStyle={{ color: "black" }}
+                      placeholder="Month of Passing"
+                      data={educationList}
+                      value={form.education}
+                      onChange={(item) => {
+                        handleChange("education", item.value);
+                      }}
+                    />
+                  </View>
                 <FormField
                   title={"College"}
                   placeholder={"College"}

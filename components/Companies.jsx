@@ -37,9 +37,9 @@ const Companies = () => {
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        className="p-3 w-full "
+        className="p-3 max-h-28"
       >
-        <View className="w-full items-center  flex-row space-x-3">
+        <View className=" items-center  flex-row space-x-3">
           <Text className="font-outfit-bold">My Companies</Text>
           {userPages?.length > 0 &&
             userPages.map((item) => {

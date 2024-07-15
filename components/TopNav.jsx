@@ -1,27 +1,22 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, Platform } from "react-native";
 import React from "react";
 import images from "@/constants/images";
 import { wp } from "@/helpers/common";
 import Entypo from "@expo/vector-icons/Entypo";
 import Feather from "@expo/vector-icons/Feather";
 import { useGlobalContext } from "@/context/GlobalProvider";
-import { Link, router, useRouter } from "expo-router";
-import * as SecureStore from "expo-secure-store";
+import { router, useNavigation } from "expo-router";
+import { DrawerActions } from "@react-navigation/native";
 
 const TopNav = () => {
-  const { isLoggedIn,setIsLoggedIn,setUser } = useGlobalContext();
-  const signOut = async () => {
-    try {
-      await SecureStore.deleteItemAsync("user");
-      setIsLoggedIn(false);
-      setUser(null);
-      router.replace("/login");
-    } catch (error) {
-      console.error("error signing out", error);
-    }
-  };
+  const { isLoggedIn } = useGlobalContext();
+  const navigation = useNavigation(); // Access the router object
+
   return (
-    <View className="w-full flex-row justify-between items-center px-3 bg-white">
+    <View
+      className="w-full flex-row justify-between items-center px-3 bg-white"
+      style={{ paddingTop: Platform.OS == "ios" ? 30 : 20 }}
+    >
       <TouchableOpacity style={{ width: wp(20) }}>
         <Feather name="search" size={wp(7)} color="black" />
       </TouchableOpacity>
@@ -32,7 +27,7 @@ const TopNav = () => {
       {isLoggedIn ? (
         <TouchableOpacity
           style={{ width: wp(20) }}
-          onPress={() => signOut()}
+          onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
           className=" justify-end items-end rounded-md"
         >
           <Entypo name="menu" size={wp(7)} color="black" />

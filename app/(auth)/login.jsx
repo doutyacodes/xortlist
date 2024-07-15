@@ -71,8 +71,8 @@ const Login = () => {
         const newDataJSON = JSON.stringify(response.data.user);
 
         await SecureStore.setItemAsync("user", newDataJSON);
-        setIsLoggedIn(true);
         setUser(response.data.user);
+        setIsLoggedIn(true);
         router.replace("/home");
       }
       if (response.data.success == false) {

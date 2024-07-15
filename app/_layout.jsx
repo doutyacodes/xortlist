@@ -7,7 +7,7 @@ import Toast from "react-native-toast-message";
 
 export default function RootLayout() {
   const [fontsLoaded, error] = useFonts({
-    "outfit": require("../assets/fonts/Outfit-Regular.ttf"),
+    outfit: require("../assets/fonts/Outfit-Regular.ttf"),
     "outfit-bold": require("../assets/fonts/Outfit-Bold.ttf"),
     "outfit-medium": require("../assets/fonts/Outfit-Medium.ttf"),
     "outfit-black": require("../assets/fonts/Outfit-Black.ttf"),
@@ -31,16 +31,14 @@ export default function RootLayout() {
 
   if (!fontsLoaded && !error) {
     return null;
-    
   }
   return (
     <GlobalProvider>
-    <Stack screenOptions={{headerShown:false}}>
-      <Stack.Screen name="index" />
-     
-    </Stack>
-    <StatusBar  style="dark" />
-    <Toast />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
+      </Stack>
+      <StatusBar style="dark" />
+      <Toast />
     </GlobalProvider>
   );
 }

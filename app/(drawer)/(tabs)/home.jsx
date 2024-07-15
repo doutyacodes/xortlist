@@ -6,6 +6,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import Companies from "@/components/Companies";
 import { Colors } from "@/constants/Colors";
 import { hp } from "@/helpers/common";
+import { StatusBar } from "expo-status-bar";
 
 const Home = () => {
   const [filterChallenges, setFilterChallenges] = useState([]);
@@ -17,7 +18,6 @@ const Home = () => {
       colors={[Colors.light.gradient1, Colors.light.gradient2]}
       style={{ flex: 1 }}
     >
-      <SafeAreaView>
         <TopNav />
         <Companies />
       <FlatList
@@ -39,7 +39,7 @@ const Home = () => {
           </View>
         )}
       />
-      </SafeAreaView>
+      <StatusBar style="dark" />
     </LinearGradient>
   );
 };

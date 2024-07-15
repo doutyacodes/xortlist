@@ -9,6 +9,8 @@ export const Colors = {
   light: {
     gradient1:"#a3d9e3",
     gradient2:"#d0f1c4",
+    red:"#dc2626",
+    greendark:"#0d8b4c",
   },
  
 };
